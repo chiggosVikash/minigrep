@@ -1,3 +1,5 @@
+
+
 use std::{error::Error, fs, env};
 
 
@@ -9,8 +11,7 @@ pub fn run (config:Config)-> Result<(),Box<dyn Error>>{
     }else{
         search_case_insensitive(&config.query,&result)
     };
-    
-   
+
     for line in search_result{
         println!("{}",line);
     }
@@ -56,6 +57,12 @@ fn search_case_insensitive<'a>(query:&str,content:&'a str)-> Vec<&'a str>{
         }
     }
     search_result
+}
+
+pub fn extra_learn() -> (i32, i32) {
+    let (x1,x2) = (12,23);
+    dbg!(x1,x2);
+    (x1,x2)
 }
 
 #[cfg(test)]
