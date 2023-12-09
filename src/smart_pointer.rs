@@ -57,7 +57,7 @@ pub fn _box_smart_pointer(){
 pub fn add_and_view_data_in_linked_list<T>()
 where T:PartialEq
 {
-    let mut node = Node::new(10);
+    let _node = Node::new(10);
     // let mut last_node = node;
 
 
