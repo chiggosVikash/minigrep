@@ -5,20 +5,46 @@ enum List{
     Nil
 }
 
-use std::ptr::{addr_of, addr_of_mut};
+use std::clone::Clone as OtherClone;
 use List::{Cons, Nil};
 
 #[derive(PartialEq,Debug)]
 struct Node<T>{
     data:Option<T>,
-    node:Box<Option<Node<T>>>,
+    node:Option<Box<Node<T>>>,
 }
+
+struct Vector2d {
+    x:f64,
+    y:f64
+}
+
+trait Copy{
+    fn copy(&self)->Self;
+}
+
+impl Copy for Vector2d{
+    fn copy(&self)-> Self{
+        Self{
+            x:self.x.clone(),
+            y:self.y.clone(),
+        }
+    }
+}
+
+// trait Clone<T>{
+//     fn clone(&self);
+// }
+
+
+
+
 
 impl<T> Node<T> {
     fn new(data:T) -> Node<T> {
         Node{
             data:Some(data),
-            node: Box::new(None)
+            node: None
         }
     }
 }
@@ -45,7 +71,10 @@ where T:PartialEq
 fn _view_linked_list_data<T>(list: Node<i32>)
 where T:PartialEq{
 
-    let mut l1 = &(*list.node);
+
+
+
+    let mut l1 = &(list.node);
 
     if l1.as_ref() == None{
         return
